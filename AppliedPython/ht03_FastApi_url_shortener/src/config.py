@@ -1,0 +1,23 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+POSTGRES_USER = os.getenv("POSTGRES_USER")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
+POSTGRES_HOST = os.getenv("POSTGRES_HOST")
+POSTGRES_PORT = int(os.getenv("POSTGRES_PORT"))
+
+POSTGRES_URL = f"postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+
+REDIS_HOST = os.getenv("REDIS_HOST")
+REDIS_PORT = int(os.getenv("REDIS_PORT"))
+
+REDIS_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}"
+
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "qwerty123")
+JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
+JWT_TOKEN_EXPIRATION_MIN = int(os.getenv("JWT_TOKEN_EXPIRATION_MIN", 60))
+
+DEFAULT_URL_TTL_DAYS = int(os.getenv("DEFAULT_URL_TTL_DAYS", 30))
