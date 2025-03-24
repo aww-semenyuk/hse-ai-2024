@@ -71,7 +71,6 @@ def get_url_stats(short_code: str, db: Session = Depends(get_db)):
     return StatsResponse(short_code=short_code, created_at=db_url.created_at, last_requested=last_requested, num_requests=num_requests)
 
 @router.get("/{short_code}", responses={status.HTTP_307_TEMPORARY_REDIRECT: {"description": "Temporary Redirect"}})
-@cache(expire=60)
 def get_by_short_code(short_code: str, db: Session = Depends(get_db)):
     db_log = RequestLog(short_code=short_code)
     db.add(db_log)
